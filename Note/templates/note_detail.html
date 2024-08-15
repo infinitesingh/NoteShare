@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ note.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ note.title }}</h1>
+<p>{{ note.content }}</p>
+
+<h3>Shared with:</h3>
+<ul>
+    {% if shared_users %}
+        {% for user in shared_users %}
+        <li>{{ user.username }}</li>
+        {% endfor %}
+    {% else %}
+        <li>No users have been shared with this note.</li>
+    {% endif %}
+</ul>
+
+<a href="{% url 'note_list' %}">Back to Note List</a>
+{% endblock %}

@@ -1,0 +1,5 @@
+# ignore environment files:
+.environment
+.env
+.env.local
+.env.production

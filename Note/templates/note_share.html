@@ -1,0 +1,25 @@
+<!-- templates/note_share.html -->
+{% extends 'base.html' %}
+
+{% block title %}Share Notes{% endblock %}
+
+{% block content %}
+
+<h2>Share Note: {{ note.title }}</h2>
+<form method="post">
+    {% csrf_token %}
+    <ul>
+        {% for user in users %}
+        <li>
+            <label>
+                <input type="checkbox" name="users" value="{{ user.id }}" {% if user.id in shared_users_ids %}checked{% endif %}>
+                {{ user.username }}
+            </label>
+        </li>
+        {% endfor %}
+    </ul>
+    <button type="submit">Share</button>
+</form>
+<a href="{% url 'note_list' %}">Cancel</a>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+<!-- templates/note_list.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Your Notes{% endblock %}
+
+{% block content %}
+<h1>Your Notes</h1>
+<ul>
+    {% for note in notes %}
+    <li>
+        <a href="{% url 'note_detail' note.id %}">{{ note.title }}</a> -  
+        <a href="{% url 'note_edit' note.id %}">Edit</a> - 
+        <a href="{% url 'note_delete' note.id %}">Delete</a> - 
+        <a href="{% url 'note_share' note.id %}">Share</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<h2>Shared with you</h2>
+<ul>
+    {% for note in shared_notes %}
+    <li><a href="{% url 'note_detail' note.id %}">{{ note.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
